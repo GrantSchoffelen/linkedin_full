@@ -5,7 +5,7 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/linkedinfullstack-dev'
+    uri: 'mongodb://localhost/linkedin'
   },
 
   seedDB: true

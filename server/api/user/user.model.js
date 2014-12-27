@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
-var authTypes = ['github', 'twitter', 'facebook', 'google'];
+var authTypes = ['github', 'twitter', 'facebook', 'google','linkedin'];
 
 var UserSchema = new Schema({
   name: String,
@@ -17,6 +17,7 @@ var UserSchema = new Schema({
   salt: String,
   facebook: {},
   twitter: {},
+  linkedin: {},
   google: {},
   github: {}
 });
@@ -99,6 +100,8 @@ var validatePresenceOf = function(value) {
  */
 UserSchema
   .pre('save', function(next) {
+    console.log("hashed pass: ",this.hashedPassword);
+    console.log("provider: ", this.provider);
     if (!this.isNew) return next();
 
     if (!validatePresenceOf(this.hashedPassword) && authTypes.indexOf(this.provider) === -1)

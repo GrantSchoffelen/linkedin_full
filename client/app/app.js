@@ -7,11 +7,13 @@ angular.module('linkedinFullstackApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'ngLinkedIn'
+  'xeditable', 
+  'ngLinkedIn', 
+  'ngMaterial', 
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
-      .otherwise('/main');
+      .otherwise('/');
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
@@ -43,7 +45,7 @@ angular.module('linkedinFullstackApp', [
     };
   })
 
-  .run(function ($rootScope, $location, Auth) {
+  .run(function ($rootScope, $location, Auth, editableOptions) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {
@@ -52,4 +54,5 @@ angular.module('linkedinFullstackApp', [
         }
       });
     });
+    editableOptions.theme = 'bs3';
   });

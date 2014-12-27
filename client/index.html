@@ -13,10 +13,14 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
+    
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
     <link rel="stylesheet" href="app/app.css">
+    <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
       <!-- injector:css -->
       <!-- endinjector -->
     <!-- endbuild -->
@@ -25,9 +29,10 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
+    <div ng-include="'components/navbar/navbar.html'"></div>
     <!-- Add your site or application content here -->
     <div ui-view=""></div>
+    <div ng-include="'components/footer/footer.html'"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -56,6 +61,10 @@
       <script src="bower_components/angular-socket-io/socket.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
       <script src="bower_components/ngLinkedIn/ngLinkedIn.js"></script>
+      <script src="bower_components/angular-animate/angular-animate.js"></script>
+      <script src="bower_components/angular-aria/angular-aria.js"></script>
+      <script src="bower_components/hammerjs/hammer.js"></script>
+      <script src="bower_components/angular-material/angular-material.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
@@ -75,11 +84,14 @@
           <script src="app/main/profile.controller.js"></script>
           <script src="components/auth/auth.service.js"></script>
           <script src="components/auth/user.service.js"></script>
+          <script src="components/footer/footer.controller.js"></script>
           <script src="components/modal/modal.service.js"></script>
           <script src="components/mongoose-error/mongoose-error.directive.js"></script>
           <script src="components/navbar/navbar.controller.js"></script>
           <script src="components/socket/socket.service.js"></script>
           <!-- endinjector -->
+         
+          <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
         <!-- endbuild -->
 </body>
 </html>

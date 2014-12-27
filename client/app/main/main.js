@@ -4,12 +4,17 @@ angular.module('linkedinFullstackApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('main', {
-        url: '/main',
-        templateUrl: 'app/main/main.html',
+        abstract: true, 
+        template: '<div ui-view></div>',
         controller: 'MainCtrl'
       })
       .state('main.profile',{
-      	url: '/profile/:id',
-      	templateUrl: 'app/main/profile.html'
+        url: '/',
+        templateUrl: 'app/main/profile.html',
+        controller: 'ProfileCtrl'
       })
+      // .state('main.create',{
+      // 	url: '/create',
+      // 	templateUrl: 'app/main/create.html'
+      // })
   });
