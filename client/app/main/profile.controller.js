@@ -1,28 +1,38 @@
 angular.module('linkedinFullstackApp')
   .controller('ProfileCtrl', function($scope, $http, socket, $linkedIn, $state, Auth) {
-    $scope.currentUser = Auth.getCurrentUser();
-   
-
 
     $http.get('/api/users/me').success(function(ProfileData) {
         $scope.profileInformation = ProfileData; 
+        if(!$scope.profileInformation.linkedin.contacts){
+          $scope.profileInformation.linkedin.contacts =[]; 
+          $scope.profileInformation.linkedin.contacts.push({feild: "linkedin", 
+         information: ProfileData.linkedin.publicProfileUrl})
+          $scope.profileInformation.linkedin.contacts.push({feild: 'Email', information: ProfileData.linkedin.emailAddress})
+        }
         $scope.profileInformation.fullName = ProfileData.linkedin.firstName +" " +ProfileData.linkedin.lastName
-        $scope.profileInformation.date = []
-        for(var i = 0; i<ProfileData.linkedin.positions.values.length; i++){
-          if(ProfileData.linkedin.positions.values[i].endDate === undefined){
-            ProfileData.linkedin.positions.values[i].endDate = new Date(); 
+        for(var j=0; j< $scope.profileInformation.linkedin.skills.values.length; j++){
+          if(!$scope.profileInformation.linkedin.skills.values[j].skill.level){
+          $scope.profileInformation.linkedin.skills.values[j].skill.level = 5;
           }
-          console.log(ProfileData.linkedin.positions.values[i].endDate)
-          ProfileData.linkedin.positions.values[i].endDate = new Date(ProfileData.linkedin.positions.values[i].endDate.year, ProfileData.linkedin.positions.values[i].endDate.month)
-          if(!$scope.profileInformation.linkedin.skills.values[i].skill.level){
-          $scope.profileInformation.linkedin.skills.values[i].skill.level = 5;
+          }
+
+
+        for(var i = 0; i<ProfileData.linkedin.positions.values.length; i++){
+          if(!ProfileData.linkedin.positions.values[i].endDate){
+           ProfileData.linkedin.positions.values[i].endDate = new Date(); 
           } 
           ProfileData.linkedin.positions.values[i].startDate = new Date(ProfileData.linkedin.positions.values[i].startDate.year, ProfileData.linkedin.positions.values[i].startDate.month)
-          $scope.profileInformation.date.push(ProfileData.linkedin.positions.values[i].startDate.getMonth())
+          ProfileData.linkedin.positions.values[i].endDate = new Date(ProfileData.linkedin.positions.values[i].endDate.year, ProfileData.linkedin.positions.values[i].endDate.month)
+          if (isNaN( ProfileData.linkedin.positions.values[i].endDate.getTime() )){
+            ProfileData.linkedin.positions.values[i].endDate = new Date(); 
+          }
+          console.log(ProfileData.linkedin.positions.values[i].endDate.toDateString())
+          ProfileData.linkedin.positions.values[i].startDate = ProfileData.linkedin.positions.values[i].startDate.toDateString().substring(4,7) + " " +ProfileData.linkedin.positions.values[i].startDate.toDateString().substring(11,15); 
+          ProfileData.linkedin.positions.values[i].endDate = ProfileData.linkedin.positions.values[i].endDate.toDateString().substring(4,7) + " " +ProfileData.linkedin.positions.values[i].endDate.toDateString().substring(11,15);     
          }
+         
     });
 
-    console.log($scope.profileInformation)
 
     // Helper function for $http.post update databse with information
     $scope.update = function() {
@@ -30,7 +40,6 @@ angular.module('linkedinFullstackApp')
         console.log("Update to database Complete")
       });
     }
-
 
     $scope.addPosition = function() {
       $scope.newPosition = {
@@ -43,12 +52,22 @@ angular.module('linkedinFullstackApp')
       $scope.update()
     };
 
+    $scope.addContact = function() {
+      $scope.newContact = {
+        feild: "Edit Contact Feild",
+        information: "Edit Contact Information", 
+        }
+     
+      $scope.profileInformation.linkedin.contacts.push($scope.newContact)
+      $scope.update()
+    };
+
     $scope.addSkill = function() {
       $scope.newSkill = {
-        id: '47',
+        id: $scope.profileInformation.linkedin.skills.values.length +1, 
         skill: {
           name: "edit name",
-          level: 1 
+          level: 5 
 
         }
       };
@@ -56,9 +75,20 @@ angular.module('linkedinFullstackApp')
       
     };
 
-$scope.date = function(){
-    console.log(new Date(2012, 11))
-  }
+    $scope.addEducation = function() {
+      $scope.newEducation = {
+        degree: "Degree", 
+          fieldOfStudy: "Major",
+          notes: "Description", 
+          schoolName: "School Name", 
+          startDate: {year: "Start Date"}, 
+          endDate: {year: "End Date"}  
+
+        
+      };
+      $scope.profileInformation.linkedin.educations.values.push($scope.newEducation)
+      
+    };
 
 
 

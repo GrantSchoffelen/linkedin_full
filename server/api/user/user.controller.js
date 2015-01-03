@@ -78,15 +78,11 @@ exports.update = function(req, res) {
   })
 }
 
-// exports.remove = function(req, res) {
-//   User.findById(req.body._id).exec(function(err, user) {
-//     user.linkedin = req.body.linkedin
-//     if (err) return res.send(500)
-//     user.save(function(err, user) {
-//       if (err) return res.send(500)
-//       return res.send(200)
-//     })
-//   })
+// exports.publish = function(req, res){
+//   var userId2 = req.body._id;
+//   console.log(userId2, "req.body._id")
+//   console.log('hit')
+  
 // }
 
 /**

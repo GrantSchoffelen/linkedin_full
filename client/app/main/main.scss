@@ -2,6 +2,11 @@
     margin: 20px 0;
 }
 
+.publish{
+    height: 50px;
+    width: 200px;
+}
+
 #banner {
     border-bottom: none;
     margin-top: -20px;
@@ -40,10 +45,6 @@
     width: 702px; 
 }
 
-.blue-background { 
-   background: #F3EFE0;  
-}
-
 ul.no-bullets { list-style-type: none;
  }
 
@@ -52,8 +53,18 @@ ul.no-bullets { list-style-type: none;
 .jumbotron .container .lead { font-size: 28px; }
 .jumbotron .scroll-down { height: 80px; width: 110px; display: block; position: absolute; bottom: 0px; right: 5%; background-color: #222222; text-align: center; z-index: 6; }
 
-.editable-wrap{
-    width: 80%;
+#profile textarea.form-control{
+     height: 150px;
+    width: 300px;
+}
+#experiences textarea.form-control{
+     height: 150px;
+    width: 300px;
+}
+
+textarea.form-control{
+    height: 200px;
+    width: 600px;
 }
 
 .editTitles{
@@ -61,6 +72,10 @@ ul.no-bullets { list-style-type: none;
     margin-bottom: 10px; 
     margin-top: 10px;
     font-weight: bold; 
+}
+
+.about{
+    word-wrap: break-word;
 }
 
 #abilities ul > li { min-height: 30px; padding: 3px 0px; }
@@ -76,7 +91,11 @@ ul.no-bullets { list-style-type: none;
     -o-transition: all 0.3s;
     transition: all 0.3s;
 }
-#abilities ul > li .ability-score .glyphicon.filled { color: #22A39F; }
+#abilities ul > li .ability-score .glyphicon.filled { color: #D5C47E; }
 
 #abilities ul > li:hover .ability-score .glyphicon { margin-left: 2px; } 
  
+#profile .row > div { margin-bottom: 20px; }
+#profile .row > div img { width: 100%; max-width: 246px; height: auto; }
+.container { max-width: 1280px; padding: 40px 180px; }
+.nopadding { padding: 0px 0px;}

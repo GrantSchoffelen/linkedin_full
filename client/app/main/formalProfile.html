@@ -1,0 +1,108 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div id="wrapper" >
+  <!-- -->
+  <div id="view">
+    <br>
+    <br>
+    <div id="resume">
+      <h1 class="name">
+      <span class="first-name">{{profileInformation.fullName}}</span>
+      <div class="clear"></div>
+      </h1>
+      
+      <div class="section contact">
+        <h2 class="section-header">
+        
+        </h2>
+        <div class="content">     <div class="main-address">
+          <span class="glyphicon glyphicon-home"></span>
+          <span class="content">{{profileInformation.linkedin.location.name}}</span>
+          <span class="glyphicon glyphicon-earphone"></span>
+          <span class="content">Phone</span>
+        </div>
+        <div class="phone-home phone-number">
+        </div>
+        
+        
+        <span class="glyphicon glyphicon-envelope"></span>
+        <span class="content">Email</span>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="section educations">
+      <h2 class="section-header">
+      <span class="text">Education</span>
+      </h2>
+      <div class="content">   <div class="education first" ng-repeat="educations in profileInformation.linkedin.educations.values">
+        <div class="school-name">{{educations.schoolName}}</div>
+        <div class="dates">
+          <span class="start-year">{{educations.startDate.year}}</span>
+          <span class="date-separator">-</span>
+          <span class="end-year">{{educations.endDate.year}}</span>
+        </div>
+        <div class="program">
+          <span>{{educations.degree}}</span>
+          <span>,</span>
+          <span>{{educations.fieldOfStudy}}</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  
+  <div class="section skills">
+    <h2 class="section-header">
+    <span class="text">Skills</span>
+    </h2>
+    <div class="content">  <ul class="skills-list">
+      <li class="skill first" ng-repeat="skill in profileInformation.linkedin.skills.values">
+        <span class="skill-name">{{skill.skill.name}}</span>
+      </li>
+    </ul>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="section positions">
+  <h2 class="section-header">
+  <span class="text">Experience</span>
+  </h2>
+  <div class="content">   <div class="position first" ng-repeat="position in profileInformation.linkedin.positions.values">
+    <div class="company-name">{{position.company.name}}</div>
+    <div class="dates">
+      <span class="start-month">{{position.startDate}}</span>
+      <span class="date-separator">-</span>
+      <span class="is-current">{{position.endDate}}</span>
+    </div>
+    <div class="title">{{position.title}}</div>
+    
+    <div class="job-summary"><p>{{position.summary}}</p>
+    </div>
+    
+  </div>
+  
+</div>
+<div class="clear"></div>
+</div>
+
+
+
+
+
+
+
+
+<div class="footer"></div>
+</div>
+<div class="view-clear"></div>
+
+
+</div>
+</div>
+<br>
+<br>
+<br>
+
+
+

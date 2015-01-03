@@ -13,7 +13,7 @@ router
       'r_basicprofile',
       'r_emailaddress',
       'r_contactinfo',
-      'r_fullprofile' 
+      'r_fullprofile'
     ],
     session: false
   }))
