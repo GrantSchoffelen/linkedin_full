@@ -1,9 +1,11 @@
-<!-- <h3>{{profileInformation}}</h3> -->
-<link href="http://peterschoffelen.us/view/style.css" rel="stylesheet" />
+<link href="http://peterschoffelen.us/view/style.css" rel="stylesheet" /> 
 		<div id="top" class="jumbotron" data-src="http://peterschoffelen.us/view/images/dog.gif" data-position="bottom right">
+				
 			<div class="container">
 				<h1>{{profileInformation.fullName}}</h1>
 				<p class="lead">Resume</p>
+				
+				 <a class='over col-md-6' href="/profile"><md-button  class="md-raised md-primary glyphicon glyphicon-pencil" ng-click="update()"> Click Here To Edit Your Resume</md-button></a>
 			</div>
 			
 			<div class="overlay"></div>
@@ -13,7 +15,7 @@
 			</a>
 		</div>
 		
-		<nav class="navbar navbar-default" id="navbar-example" role="navigation">
+			<nav class="navbar navbar-default" id="navbar-example" role="navigation">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -28,11 +30,10 @@
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#profile">Profile</a></li>
-					<li><a href="#experiences">Experiences</a></li>
-					<li><a href="#abilities">Abilities</a></li>
-					<li><a href="#interests">Interests</a></li>
+					<li><a href="#experiences">Education</a></li>
+					<li><a href="#interests">Career</a></li>
+					<li><a href="#abilities">Skills</a></li>
 					<li><a href="#contact">Contact</a></li>
-                                        <li><a href="blog">Blog</a></li>
 				</ul>
 			</div><!-- /.navbar-collapse -->
 		</nav>
@@ -85,7 +86,9 @@
 		<div class="col-md-8">
 			<p>
 				<strong>{{educations.degree}} - {{educations.fieldOfStudy}}</strong>
+				<p>
 				<span class="hidden-phone">{{educations.notes}}</span>
+			</p>
 				<span class="experience-details">
 					<span class="location">
 						<span class="glyphicon glyphicon-map-marker"></span>
@@ -101,7 +104,7 @@
 	
 <br>
 <br>
-<h2>Careers</h2>
+<h2 id="interests">Careers</h2>
 <hr />
 
 
@@ -113,8 +116,8 @@
 		<div class="col-md-4">
 			<h4>{{position.company.name}}</h4>
 			<p class="experience-period">
-				{{position.startDate}}				- 
-				{{position.endDate}}		</p>
+				{{position.startDate.total}}				- 
+				{{position.endDate.total}}		</p>
 		</div>
 		<div class="col-md-8">
 			<p>
@@ -226,39 +229,39 @@
 				<h2>Contact</h2>
 
 <hr />
+<center> 
 
 <div class="row">
 	<div class="col-md-6">
 		<ul class="no-bullets">
-			<li>
-				<a href="http://twitter.com/pascalvgemert" target="_blank">
-					<span class="icon icon-twitter"></span>
-					http://twitter.com/pascalvgemert				</a>
+			<li ng-repeat="contact in profileInformation.linkedin.contacts | filter:{'feild': 'Email'}:true">
+				<a href="{{contact.information}}" target="_blank">
+					<span class="glyphicon glyphicon-envelope">
+					{{contact.information}}</span>
+					
+									</a>
 			</li>
-			<li>
-				<a href="http://linkedin.nl/in/pascalvgemert/" target="_blank">
-					<span class="icon icon-linkedin"></span>
-					http://linkedin.nl/in/pascalvgemert/				</a>
+		<li class="centerLi" ng-repeat="contact in profileInformation.linkedin.contacts | filter:{'feild': 'Link'}:true">
+				<a href="{{contact.information}}" target="_blank">
+					<span class="glyphicon glyphicon-link">
+{{contact.information}}
+					</span>
+					</a>
 			</li>
 		</ul>
 	</div>
-	<div class="col-md-6">
+	<div>
 		<ul class="no-bullets">
-			<li>
-				<a href="javascript:void(0);">
-					<span class="icon icon-skype"></span>
-					pascalvgemert				</a>
-			</li>
-			<li>
-				<a href="mailto:ln.tremegnavlacsap@lacsap">
-					<span class="icon icon-email"></span>
-					<span style="unicode-bidi:bidi-override; direction: rtl;">
-						ln.tremegnavlacsap@lacsap					</span>
-				</a>
+			<li ng-repeat="contact in profileInformation.linkedin.contacts | filter:{'feild': 'Phone'}:true">
+				<a href="{{contact.information}}" target="_blank">
+					<span class=" glyphicon glyphicon-earphone">{{contact.information}}
+					</span>
+					</a>
 			</li>
 		</ul>
 	</div>
 </div>
+</center>
 
 <hr />
 			</div>

@@ -2,34 +2,46 @@ angular.module('linkedinFullstackApp')
   .controller('ProfileCtrl', function($scope, $http, socket, $linkedIn, $state, Auth) {
 
     $http.get('/api/users/me').success(function(ProfileData) {
-        $scope.profileInformation = ProfileData; 
-        if(!$scope.profileInformation.linkedin.contacts){
-          $scope.profileInformation.linkedin.contacts =[]; 
-          $scope.profileInformation.linkedin.contacts.push({feild: "linkedin", 
-         information: ProfileData.linkedin.publicProfileUrl})
-          $scope.profileInformation.linkedin.contacts.push({feild: 'Email', information: ProfileData.linkedin.emailAddress})
+         $scope.profileInformation = ProfileData; 
+     $scope.profileInformation.fullName = ProfileData.linkedin.firstName +" " +ProfileData.linkedin.lastName
+     $scope.profileInformation.linkedin.contacts =[]; 
+      if($scope.profileInformation.linkedin.contacts.length === 0){
+          $scope.profileInformation.linkedin.contacts.push({feild: 'Email', information: ProfileData.linkedin.emailAddress}); 
+          $scope.profileInformation.linkedin.contacts.push({feild: 'Phone', information: '123-456-7890'}); 
+          $scope.profileInformation.linkedin.contacts.push({feild: 'Link', 
+          information: ProfileData.linkedin.publicProfileUrl}); 
         }
-        $scope.profileInformation.fullName = ProfileData.linkedin.firstName +" " +ProfileData.linkedin.lastName
         for(var j=0; j< $scope.profileInformation.linkedin.skills.values.length; j++){
           if(!$scope.profileInformation.linkedin.skills.values[j].skill.level){
-          $scope.profileInformation.linkedin.skills.values[j].skill.level = 5;
+            $scope.profileInformation.linkedin.skills.values[j].skill.level = 5;
           }
-          }
+        }
 
-
-        for(var i = 0; i<ProfileData.linkedin.positions.values.length; i++){
-          if(!ProfileData.linkedin.positions.values[i].endDate){
-           ProfileData.linkedin.positions.values[i].endDate = new Date(); 
-          } 
-          ProfileData.linkedin.positions.values[i].startDate = new Date(ProfileData.linkedin.positions.values[i].startDate.year, ProfileData.linkedin.positions.values[i].startDate.month)
-          ProfileData.linkedin.positions.values[i].endDate = new Date(ProfileData.linkedin.positions.values[i].endDate.year, ProfileData.linkedin.positions.values[i].endDate.month)
-          if (isNaN( ProfileData.linkedin.positions.values[i].endDate.getTime() )){
-            ProfileData.linkedin.positions.values[i].endDate = new Date(); 
+       for(var i = 0; i < ProfileData.linkedin.positions.values.length; i++){
+       
+        if(!ProfileData.linkedin.positions.values[i].endDate){
+        ProfileData.linkedin.positions.values[i].endDate = { month: new Date().getMonth(), 
+                                                             year: new Date().getFullYear(), 
+                                                             total: null}
+        }
+         if(!ProfileData.linkedin.positions.values[i].startDate){
+        ProfileData.linkedin.positions.values[i].startDate = { month: 0, 
+                                                               year: 2015, 
+                                                               total: null}
+        }
+    
+    if(!ProfileData.linkedin.positions.values[i].startDate.total){
+          ProfileData.linkedin.positions.values[i].startDate.total = new Date(ProfileData.linkedin.positions.values[i].startDate.year, ProfileData.linkedin.positions.values[i].startDate.month)
+          ProfileData.linkedin.positions.values[i].startDate.total = ProfileData.linkedin.positions.values[i].startDate.total.toDateString().substring(4,7) + " " +ProfileData.linkedin.positions.values[i].startDate.total.toDateString().substring(11,15); 
+        }
+        
+    if(!ProfileData.linkedin.positions.values[i].endDate.total){
+            ProfileData.linkedin.positions.values[i].endDate.total = new Date(ProfileData.linkedin.positions.values[i].endDate.year, ProfileData.linkedin.positions.values[i].endDate.month)
+            ProfileData.linkedin.positions.values[i].endDate.total = ProfileData.linkedin.positions.values[i].endDate.total.toDateString().substring(4,7) + " " +ProfileData.linkedin.positions.values[i].endDate.total.toDateString().substring(11,15);     
           }
-          console.log(ProfileData.linkedin.positions.values[i].endDate.toDateString())
-          ProfileData.linkedin.positions.values[i].startDate = ProfileData.linkedin.positions.values[i].startDate.toDateString().substring(4,7) + " " +ProfileData.linkedin.positions.values[i].startDate.toDateString().substring(11,15); 
-          ProfileData.linkedin.positions.values[i].endDate = ProfileData.linkedin.positions.values[i].endDate.toDateString().substring(4,7) + " " +ProfileData.linkedin.positions.values[i].endDate.toDateString().substring(11,15);     
          }
+
+         console.log($scope.profileInformation)
          
     });
 

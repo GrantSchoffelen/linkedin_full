@@ -17,7 +17,7 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 
 .profilePicture {
 	border-radius: 50%;
-	border: 5px solid #4393B9; 
+	border: 5px solid #22A39F; 
 
 
 }
@@ -25,14 +25,30 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
    background: #434242;  
 }
 
+.mainImage {
+/* background: no-repeat center right fixed; */
+ background-image: url(images/tower_scope_animation.gif); 
+/* -webkit-background-size: 100%; */
+-moz-background-size: 100%;
+-o-background-size: 100%;
+/* background-size: 100%; */
+/* -webkit-background-size: cover; */
+-moz-background-size: cover;
+-o-background-size: cover;
+/* background-size: cover; */
+/* margin-bottom: 0px; */
+padding: 0px;
+}
+
+
+
 
 // Component styles are injected through grunt
 // injector
 @import 'account/login/login.scss';
 @import 'admin/admin.scss';
 @import 'complete/complete.scss';
-@import 'fancy/fancy.scss';
+@import 'formal/formal.scss';
 @import 'main/main.scss';
-@import 'welcome/welcome.scss';
 @import 'modal/modal.scss';
 // endinjector
