@@ -5,6 +5,9 @@ angular.module('linkedinFullstackApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
+    }, {
+      'title': 'Find A Job',
+      'link': '/jobs'
     }];
 
     $scope.isCollapsed = true;

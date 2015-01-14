@@ -8,8 +8,8 @@
 </div>
     
 
-      <form editable-form name="detailsForm" onaftersave="update()">
 <div id="experiences row" class="container ">
+      <form editable-form name="detailsForm" onaftersave="update()">
   <div class="row">
   <h2 class='editTitles'>Profile
       <md-button aria-label="Details Edit" type="button" class="md-raised md-primary glyphicon glyphicon-pencil" ng-click="detailsForm.$show()" ng-show="!detailsForm.$visible" ng-hide="detailsForm.$visible">
@@ -19,8 +19,8 @@
   <!--   <div class="col-md-4 text-center">
     </div> -->
       <div><strong class="editTitles">Name:</strong><br />
-      <p editable-text="profileInformation.fullName">
-      {{profileInformation.fullName}}</p>
+      <p editable-text="profileInformation.linkedin.fullName">
+      {{profileInformation.linkedin.fullName}}</p>
     </div>
       <div><strong class ='editTitles'>Location:</strong><br />
       <p editable-text="profileInformation.linkedin.location.name">
@@ -45,8 +45,7 @@
     </div>
    
     
-  </div>
-  <center>
+ 
        <div ng-show="detailsForm.$visible" class='row'>
             <md-button type="submit" class="md-raised md-primary glyphicon glyphicon-saved" ng-disabled="detailsForm.$waiting">
             Save
@@ -55,9 +54,10 @@
             Cancel
             </md-button>
         </div>
-      </center>
+   
       </form>
-</div>
+  </div>
+
 <!-- Jeff added ui-view here to connect profile.html here when page goes to /main/profile -->
 <div id="experiences" class = "container">
   <h2 class='editTitles'>Education</h2>
@@ -234,14 +234,13 @@
 <div id="contact" class="container">
   <h2 class='editTitles'>Contact Information</h2>
 <hr />
-  <div class="row" ng-repeat="contact in profileInformation.linkedin.contacts">
+  <div class="row" ng-repeat="contact in profileInformation.linkedin.contacts.contacts">
    <form editable-form name="contactForm" onaftersave="update()" shown="newContact">
     <div class="col-md-6">
       <ul class="no-bullets">
         <li>
-          <div class="editTitles" ng-show="contactForm.$visible">Contact title</div>
-            <span class="editTitles" editable-text="contact.feild">{{contact.feild}} - </span> 
-      <div class="editTitles" ng-show="contactForm.$visible">Contact Information</div>
+            <span class="editTitles">{{contact.feild}} - </span> 
+      <span class="editTitles" ng-show="contactForm.$visible">Contact</span>
           <a href="{{contact.information}}" target="_blank" editable-text="contact.information">
           {{contact.information}} </a>
           
@@ -282,12 +281,22 @@
 </div>
 
 
-      <md-button  class="md-raised md-primary glyphicon glyphicon-plus" ng-click="addContact()" shown="{{contact.feild}}"> Add Contact</md-button>
+     <!--  <md-button  class="md-raised md-primary glyphicon glyphicon-plus" ng-click="addContact()" shown="{{contact.feild}}"> Add Contact</md-button> -->
 </div>
 <br>
 
-
 <center>
- <a href="/complete/{{profileInformation._id}}"><md-button  class="md-raised md-primary" ng-click="update()"> View Your Resume</md-button></a>
+  <a href="/formal"><md-button  class="md-raised" ng-click="update()"> View Your Formal Resume</md-button></a>
+ <a href="/formalPublish/{{profileInformation._id}}"><md-button  class="md-raised md-primary" ng-click="update()"> Publish Your Formal Resume</md-button></a>
+
+<br>
+<br>
+
+ <a href="/complete"><md-button  class="md-raised" ng-click="update()"> View Your Fancy Resume</md-button></a>
+ <a href="/fancyPublish/{{profileInformation._id}}"><md-button  class="md-raised md-primary" ng-click="update()"> Publish Your Fancy Resume</md-button></a>
 </center>
+
+
+<br>
+<br>
 

@@ -3,9 +3,9 @@
 angular.module('linkedinFullstackApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('formal', {
-        url: '/formal',
-        templateUrl: 'app/formal/formal.html',
+      .state('formalPublish', {
+        url: '/formalPublish/:id',
+        templateUrl: 'app/formalPublish/formalPublish.html',
         controller: 'FormalCtrl'
       });
   });

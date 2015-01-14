@@ -18,11 +18,6 @@ angular.module('linkedinFullstackApp')
         templateUrl: 'app/main/profile.html',
         controller: 'ProfileCtrl'
       })
-        .state('publish',{
-        url: '/publish/:id',
-        templateUrl: 'app/main/publish.html',
-        controller: 'PublishCtrl'
-      })
         .state('main.formalProfile',{
         url: '/formalProfile',
         templateUrl: 'app/main/formalProfile.html',

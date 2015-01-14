@@ -7,12 +7,14 @@ angular.module('linkedinFullstackApp')
 
 $http.get('/api/users/me').success(function(ProfileData) {
      $scope.profileInformation = ProfileData; 
-     $scope.profileInformation.fullName = ProfileData.linkedin.firstName +" " +ProfileData.linkedin.lastName
-     $scope.profileInformation.linkedin.contacts =[]; 
-      if($scope.profileInformation.linkedin.contacts.length === 0){
-          $scope.profileInformation.linkedin.contacts.push({feild: 'Email', information: ProfileData.linkedin.emailAddress}); 
-          $scope.profileInformation.linkedin.contacts.push({feild: 'Phone', information: '123-456-7890'}); 
-          $scope.profileInformation.linkedin.contacts.push({feild: 'Link', 
+    if(!$scope.profileInformation.linkedin.fullName){
+     $scope.profileInformation.linkedin.fullName = ProfileData.name 
+  }   
+  if(!$scope.profileInformation.linkedin.contacts){
+         $scope.profileInformation.linkedin.contacts ={contacts: []};
+          $scope.profileInformation.linkedin.contacts.contacts.push({feild: 'Email', information: ProfileData.linkedin.emailAddress}); 
+          $scope.profileInformation.linkedin.contacts.contacts.push({feild: 'Phone', information: '123-456-7890'}); 
+          $scope.profileInformation.linkedin.contacts.contacts.push({feild: 'Link', 
           information: ProfileData.linkedin.publicProfileUrl}); 
         }
         for(var j=0; j< $scope.profileInformation.linkedin.skills.values.length; j++){

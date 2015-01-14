@@ -8,5 +8,5 @@ module.exports = {
     uri: 'mongodb://localhost/linkedin'
   },
 
-  seedDB: false
+  seedDB: true
 };

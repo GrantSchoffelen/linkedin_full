@@ -9,7 +9,8 @@ angular.module('linkedinFullstackApp', [
   'ui.bootstrap',
   'xeditable', 
   'ngLinkedIn', 
-  'ngMaterial', 
+  'ngMaterial',
+  'ngDialog'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider

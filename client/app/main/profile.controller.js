@@ -2,16 +2,18 @@ angular.module('linkedinFullstackApp')
   .controller('ProfileCtrl', function($scope, $http, socket, $linkedIn, $state, Auth) {
 
     $http.get('/api/users/me').success(function(ProfileData) {
-         $scope.profileInformation = ProfileData; 
-         $
-         if(!$scope.profileInformation.fullName){
-             $scope.profileInformation.fullName = ProfileData.linkedin.firstName +" " +ProfileData.linkedin.lastName
-          }
-     $scope.profileInformation.linkedin.contacts =[]; 
-      if($scope.profileInformation.linkedin.contacts.length === 0){
-          $scope.profileInformation.linkedin.contacts.push({feild: 'Email', information: ProfileData.linkedin.emailAddress}); 
-          $scope.profileInformation.linkedin.contacts.push({feild: 'Phone', information: '123-456-7890'}); 
-          $scope.profileInformation.linkedin.contacts.push({feild: 'Link', 
+         
+         
+          $scope.profileInformation = ProfileData
+          
+if(!$scope.profileInformation.linkedin.fullName){
+     $scope.profileInformation.linkedin.fullName = ProfileData.name 
+  }   
+  if(!$scope.profileInformation.linkedin.contacts){
+         $scope.profileInformation.linkedin.contacts ={contacts: []};
+          $scope.profileInformation.linkedin.contacts.contacts.push({feild: 'Email', information: ProfileData.linkedin.emailAddress}); 
+          $scope.profileInformation.linkedin.contacts.contacts.push({feild: 'Phone', information: '123-456-7890'}); 
+          $scope.profileInformation.linkedin.contacts.contacts.push({feild: 'Link', 
           information: ProfileData.linkedin.publicProfileUrl}); 
         }
         for(var j=0; j< $scope.profileInformation.linkedin.skills.values.length; j++){
@@ -44,7 +46,7 @@ angular.module('linkedinFullstackApp')
           }
          }
 
-         console.log($scope.profileInformation)
+         
          
     });
 
@@ -73,7 +75,7 @@ angular.module('linkedinFullstackApp')
         information: "Edit Contact Information", 
         }
      
-      $scope.profileInformation.linkedin.contacts.push($scope.newContact)
+      $scope.profileInformation.linkedin.contacts.contacts.push($scope.newContact)
       $scope.update()
     };
 
