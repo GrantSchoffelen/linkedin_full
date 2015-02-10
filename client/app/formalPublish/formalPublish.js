@@ -6,6 +6,6 @@ angular.module('linkedinFullstackApp')
       .state('formalPublish', {
         url: '/formalPublish/:id',
         templateUrl: 'app/formalPublish/formalPublish.html',
-        controller: 'CompleteCtrl'
+        controller: 'FormalPublishCtrl'
       });
   });
