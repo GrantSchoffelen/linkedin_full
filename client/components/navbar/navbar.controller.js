@@ -2,13 +2,10 @@
 
 angular.module('linkedinFullstackApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
-    $scope.menu = [{
-      'title': 'Home',
-      'link': '/'
-    }, {
-      'title': 'Find A Job',
-      'link': '/jobs'
-    }];
+    // $scope.menu = [{
+    //   'title': 'Home',
+    //   'link': '/'
+    // }];
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
