@@ -2,5 +2,7 @@
 
 angular.module('linkedinFullstackApp')
   .controller('FormalPublishCtrl', function ($scope) {
-    $scope.message = 'Hello';
+     $http.get('/api/users/' + $stateParams.id).success(function(ProfileData) {
+          $scope.profileInformation = ProfileData
+       });
   });

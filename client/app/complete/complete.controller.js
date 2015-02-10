@@ -2,10 +2,10 @@
 'use strict';
 
 angular.module('linkedinFullstackApp')
-  .controller('CompleteCtrl', function ($scope, $http, socket, $linkedIn, $state, Auth) {
+  .controller('CompleteCtrl', function ($scope, $http, socket, $linkedIn, $state, Auth, $stateParams) {
     
 
-  $http.get('/api/users/me').success(function(ProfileData) {
+  $http.get('/api/users/pub/' +$stateParams.id).success(function(ProfileData) {
      $scope.profileInformation = ProfileData; 
     if(!$scope.profileInformation.linkedin.fullName){
      $scope.profileInformation.linkedin.fullName = ProfileData.name 
